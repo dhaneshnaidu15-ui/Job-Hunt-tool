@@ -1,4 +1,4 @@
-import {auth,json,read,write,discover,submitReady,eligible,MIN_SALARY_INR} from './core.mjs';
+import {auth,json,read,write,discover,submitReady,eligible,MIN_SALARY_INR} from './lib/core.mjs';
 export default async(req)=>{
  if(!auth(req))return json({error:'Unauthorized: configure ADMIN_TOKEN and enter it in the dashboard'},401);
  try{if(req.method==='GET'){const s=await read();return json({jobs:s.jobs,runs:s.runs,submissions:s.submissions,minSalaryInr:MIN_SALARY_INR,adapterConfigured:!!(process.env.APPLICATION_ADAPTER_URL&&process.env.APPLICATION_ADAPTER_TOKEN)});}
