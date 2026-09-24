@@ -1,0 +1,17 @@
+{
+  "name": "dhanesh-job-tool-backend",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "build": "node -e \"console.log('Netlify functions bundled during deploy')\""
+  },
+  "dependencies": {
+    "@netlify/blobs": "^9.0.0",
+    "@netlify/functions": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

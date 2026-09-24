@@ -1,0 +1,5 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {eligible,score,parseBoards,normalizeGreenhouse} from './core.mjs';
+test('never submit without every verification',()=>{const j={salaryInr:1500000,salaryVerified:true,qualificationsVerified:true,workAuthorizationVerified:true,resumeVerified:true,applicationApiSupported:true,status:'Ready',url:'https://example.com'};assert.equal(eligible(j),true);for(const k of ['salaryVerified','qualificationsVerified','workAuthorizationVerified','resumeVerified','applicationApiSupported'])assert.equal(eligible({...j,[k]:false}),false);assert.equal(eligible({...j,salaryInr:1499999}),false);assert.equal(eligible({...j,status:'Applied'}),false);});
+test('discovery starts unverified',()=>{const j=normalizeGreenhouse({id:1,title:'Mechanical Design Engineer',absolute_url:'https://example.com'},'test');assert.equal(j.status,'Discovered');assert.equal(j.salaryVerified,false);assert.equal(score(j)>=0,true);});
+test('board token validation',()=>assert.deepEqual(parseBoards('acme bad/path,globex'),['acme','globex']));
